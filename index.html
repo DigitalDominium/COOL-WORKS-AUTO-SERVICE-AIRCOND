@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cool Works Auto Service & AirCond | Johor Bahru</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red:    #e8380d;
+    --orange: #ff7a1a;
+    --amber:  #ffb347;
+    --dark:   #111111;
+    --panel:  #1a1a1a;
+    --card:   #202020;
+    --border: #2d2d2d;
+    --muted:  #888888;
+    --light:  #f0ede8;
+    --white:  #ffffff;
+    --green:  #25d366;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--light);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3vw;
+    background: rgba(17,17,17,.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.55rem;
+    letter-spacing: 2px;
+    color: var(--white);
+    line-height: 1;
+  }
+  .nav-logo span { color: var(--orange); }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: .85rem; font-weight: 500; letter-spacing: .5px;
+    text-transform: uppercase; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+  .nav-cta {
+    background: var(--red);
+    color: var(--white) !important;
+    padding: .45rem 1.1rem;
+    border-radius: 4px;
+    transition: background .2s !important;
+  }
+  .nav-cta:hover { background: var(--orange) !important; color: var(--white) !important; }
+
+  /* ─── HERO ────────────────────────────────────── */
+  #home {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 6vw 7rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--dark);
+  }
+
+  /* Garage texture overlay */
+  #home::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 70% 30%, rgba(232,56,13,.18) 0%, transparent 65%),
+      repeating-linear-gradient(
+        90deg,
+        transparent, transparent 40px,
+        rgba(255,255,255,.012) 40px, rgba(255,255,255,.012) 41px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent, transparent 40px,
+        rgba(255,255,255,.012) 40px, rgba(255,255,255,.012) 41px
+      );
+  }
+
+  /* Big decorative word */
+  .hero-bg-word {
+    position: absolute; top: -0.1em; right: -0.04em;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(12rem, 28vw, 26rem);
+    line-height: 1;
+    color: rgba(232,56,13,.08);
+    user-select: none; pointer-events: none;
+    letter-spacing: -4px;
+  }
+
+  /* Badge */
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(255,122,26,.12);
+    border: 1px solid rgba(255,122,26,.3);
+    color: var(--amber);
+    font-size: .78rem; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: .35rem .9rem; border-radius: 2px;
+    margin-bottom: 1.5rem; width: fit-content;
+    animation: fadeUp .6s ease both;
+  }
+  .badge-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 6px var(--green);
+    animation: pulse 1.8s ease infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 9rem);
+    line-height: .92;
+    letter-spacing: 2px;
+    color: var(--white);
+    animation: fadeUp .7s .1s ease both;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--red);
+    display: block;
+  }
+
+  .hero-sub {
+    margin-top: 1.8rem;
+    font-size: clamp(.95rem, 1.5vw, 1.1rem);
+    color: var(--muted);
+    max-width: 500px;
+    font-weight: 300;
+    animation: fadeUp .7s .2s ease both;
+  }
+
+  .hero-actions {
+    margin-top: 2.5rem;
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp .7s .3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--red);
+    color: var(--white);
+    padding: .9rem 2rem;
+    border-radius: 4px;
+    font-weight: 600; font-size: .95rem; letter-spacing: .5px;
+    text-decoration: none; display: inline-flex; align-items: center; gap: .6rem;
+    transition: background .25s, transform .2s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--orange); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--light);
+    border: 1.5px solid var(--border);
+    padding: .9rem 2rem;
+    border-radius: 4px;
+    font-weight: 600; font-size: .95rem;
+    text-decoration: none; display: inline-flex; align-items: center; gap: .6rem;
+    transition: border-color .25s, color .25s, transform .2s;
+  }
+  .btn-outline:hover { border-color: var(--amber); color: var(--amber); transform: translateY(-2px); }
+
+  .hero-stats {
+    margin-top: 4rem;
+    display: flex; gap: 3rem; flex-wrap: wrap;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    animation: fadeUp .7s .4s ease both;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.6rem; line-height: 1;
+    color: var(--white);
+  }
+  .stat-num span { color: var(--orange); }
+  .stat-label { font-size: .78rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-top: .15rem; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── SHARED SECTION STYLES ───────────────────── */
+  section { padding: 6rem 6vw; }
+
+  .label {
+    font-size: .72rem; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--orange);
+    margin-bottom: .6rem;
+  }
+  h2.section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1; letter-spacing: 1.5px;
+    color: var(--white);
+    margin-bottom: 3rem;
+  }
+  h2.section-title span { color: var(--red); }
+
+  /* ─── SERVICES ────────────────────────────────── */
+  #services {
+    background: var(--panel);
+    position: relative;
+  }
+  #services::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+    background: linear-gradient(to bottom, var(--red), transparent);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 1.5px;
+    background: var(--border);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .service-card {
+    background: var(--card);
+    padding: 2rem 1.8rem;
+    transition: background .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card:hover { background: #252525; }
+  .service-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--red), var(--orange));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .3s ease;
+  }
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .svc-icon {
+    width: 48px; height: 48px; margin-bottom: 1.2rem;
+    background: rgba(232,56,13,.1);
+    border: 1px solid rgba(232,56,13,.2);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+  }
+  .service-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem; letter-spacing: 1px;
+    color: var(--white); margin-bottom: .5rem;
+  }
+  .service-card p {
+    font-size: .88rem; color: var(--muted); line-height: 1.55;
+  }
+  .svc-tag {
+    display: inline-block; margin-top: .9rem;
+    font-size: .7rem; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--orange);
+    background: rgba(255,122,26,.08);
+    border: 1px solid rgba(255,122,26,.2);
+    padding: .2rem .6rem; border-radius: 2px;
+  }
+
+  /* ─── AIR COND HIGHLIGHT ──────────────────────── */
+  #aircond {
+    background: var(--dark);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .aircond-visual {
+    position: relative;
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+  }
+  .aircond-visual::before {
+    content: '❄';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -60%);
+    font-size: 8rem; opacity: .05;
+    animation: spinSlow 20s linear infinite;
+  }
+  @keyframes spinSlow { to { transform: translate(-50%, -60%) rotate(360deg); } }
+
+  .aircond-temp {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem; line-height: 1;
+    color: rgba(255,255,255,.08);
+    position: absolute; top: 1.5rem; right: 2rem;
+  }
+
+  .aircond-checklist {
+    list-style: none; display: flex; flex-direction: column; gap: .9rem;
+    position: relative; z-index: 1;
+  }
+  .aircond-checklist li {
+    display: flex; align-items: center; gap: .7rem;
+    font-size: .9rem; font-weight: 500; color: var(--light);
+  }
+  .check-dot {
+    width: 18px; height: 18px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--red), var(--orange));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .65rem; color: #fff;
+  }
+
+  /* ─── TESTIMONIALS ────────────────────────────── */
+  #reviews {
+    background: var(--panel);
+    position: relative;
+    overflow: hidden;
+  }
+  #reviews::after {
+    content: '★★★★★';
+    position: absolute; bottom: -1rem; right: 3vw;
+    font-size: 10rem; color: rgba(255,204,0,.04);
+    user-select: none; line-height: 1;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .review-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 1.8rem;
+    position: relative;
+    transition: border-color .2s;
+  }
+  .review-card:hover { border-color: rgba(232,56,13,.3); }
+  .review-stars { color: #ffcc00; font-size: 1rem; letter-spacing: 2px; margin-bottom: 1rem; }
+  .review-text { font-size: .9rem; color: #bbb; font-style: italic; line-height: 1.6; }
+  .review-author {
+    margin-top: 1.2rem;
+    display: flex; align-items: center; gap: .7rem;
+  }
+  .author-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--red), var(--orange));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: #fff;
+  }
+  .author-name { font-weight: 600; font-size: .88rem; color: var(--white); }
+  .author-sub { font-size: .75rem; color: var(--muted); }
+
+  /* ─── LOCATION ────────────────────────────────── */
+  #location {
+    background: var(--dark);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .info-block {
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .info-row {
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .info-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; background: var(--card);
+  }
+  .info-label { font-size: .72rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: .2rem; }
+  .info-val { font-size: .95rem; font-weight: 500; color: var(--light); }
+  .info-val a { color: var(--orange); text-decoration: none; }
+
+  .map-box {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 1.2;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .map-box iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: 0; filter: grayscale(80%) invert(92%) contrast(90%);
+  }
+
+  /* ─── CONTACT ─────────────────────────────────── */
+  #contact {
+    background: var(--panel);
+    border-top: 1px solid var(--border);
+  }
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-aside h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; letter-spacing: 1px; color: var(--white);
+    margin-bottom: .5rem;
+  }
+  .contact-aside p { font-size: .9rem; color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
+
+  .wa-button {
+    display: inline-flex; align-items: center; gap: .7rem;
+    background: var(--green);
+    color: #fff; font-weight: 700; font-size: .9rem;
+    padding: .85rem 1.6rem; border-radius: 6px; text-decoration: none;
+    transition: opacity .2s, transform .2s;
+  }
+  .wa-button:hover { opacity: .85; transform: translateY(-2px); }
+
+  form.enquiry {
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .field { display: flex; flex-direction: column; gap: .35rem; }
+  .field label { font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .field input, .field textarea, .field select {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 5px;
+    padding: .75rem 1rem;
+    font-size: .9rem; font-family: inherit;
+    color: var(--light);
+    outline: none;
+    transition: border-color .2s;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--orange); }
+  .field textarea { min-height: 110px; resize: vertical; }
+  .field select option { background: #222; }
+
+  .submit-btn {
+    background: var(--red);
+    color: var(--white);
+    border: none; cursor: pointer;
+    padding: .9rem 2.2rem;
+    font-family: inherit; font-size: .95rem; font-weight: 700;
+    border-radius: 5px; letter-spacing: .5px;
+    transition: background .25s, transform .2s;
+    align-self: flex-start;
+  }
+  .submit-btn:hover { background: var(--orange); transform: translateY(-2px); }
+
+  /* ─── FOOTER ──────────────────────────────────── */
+  footer {
+    background: #0a0a0a;
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 6vw;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem; letter-spacing: 2px; color: var(--white);
+  }
+  .footer-logo span { color: var(--orange); }
+  footer p { font-size: .78rem; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; }
+
+  /* ─── FLOATING WA BTN ─────────────────────────── */
+  .float-wa {
+    position: fixed; bottom: 24px; right: 24px;
+    background: var(--green); color: #fff;
+    width: 56px; height: 56px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 20px rgba(37,211,102,.45);
+    z-index: 200;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .float-wa:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(37,211,102,.65); }
+  .float-wa svg { width: 28px; height: 28px; fill: #fff; }
+
+  /* ─── DIVIDER ─────────────────────────────────── */
+  .stripe-divider {
+    height: 4px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--red) 0px, var(--red) 12px,
+      var(--orange) 12px, var(--orange) 24px,
+      var(--dark) 24px, var(--dark) 36px
+    );
+    opacity: .5;
+  }
+
+  /* ─── RESPONSIVE ──────────────────────────────── */
+  @media (max-width: 768px) {
+    nav { padding: .75rem 4vw; }
+    .nav-links { display: none; }
+    #home { padding: 0 5vw 5rem; }
+    section { padding: 4rem 5vw; }
+
+    #aircond, #location { grid-template-columns: 1fr; gap: 2.5rem; }
+    .aircond-visual { aspect-ratio: unset; min-height: 200px; }
+
+    .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+
+    footer { flex-direction: column; text-align: center; }
+    .hero-stats { gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Cool<span>Works</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#aircond">Air Cond</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-word">AUTO</div>
+  <div class="hero-badge"><span class="badge-dot"></span> Open Now · Johor Bahru</div>
+  <h1 class="hero-title">
+    Cool Works<br>
+    <em>Auto Service</em>
+    & AirCond
+  </h1>
+  <p class="hero-sub">Trusted car repair and air conditioning specialists in Johor Bahru. Fast diagnostics, honest pricing, quality you can count on.</p>
+  <div class="hero-actions">
+    <a href="https://wa.me/60127906884" class="btn-primary" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5a10.3 10.3 0 0 0-16.9 13.7l-1.3 4.8 4.8-1.3A10.3 10.3 0 0 0 20.5 3.5z"/></svg>
+      WhatsApp Us
+    </a>
+    <a href="tel:+60127906884" class="btn-outline">
+      📞 +60 12-790 6884
+    </a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">4.9<span>★</span></div>
+      <div class="stat-label">Google Rating</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">183<span>+</span></div>
+      <div class="stat-label">Reviews</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">10<span>+</span></div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe-divider"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="label">What We Do</div>
+  <h2 class="section-title">Our <span>Services</span></h2>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="svc-icon">🔧</div>
+      <h3>General Repair</h3>
+      <p>Brakes, suspension, steering, engine, gearbox — we handle all mechanical faults with quality parts and honest pricing.</p>
+      <span class="svc-tag">All Makes & Models</span>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🔍</div>
+      <h3>Diagnostics</h3>
+      <p>OBD2 computer scanning and comprehensive inspection to pinpoint issues fast, before they cost you more.</p>
+      <span class="svc-tag">Free Check-up Available</span>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🛞</div>
+      <h3>Tyres</h3>
+      <p>Supply, fitting, balancing, rotation, and alignment. We stock popular brands suited to local road conditions.</p>
+      <span class="svc-tag">Alignment Included</span>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🔋</div>
+      <h3>Battery</h3>
+      <p>Battery testing and replacement with warranty-backed brands. Dead car? We come to you for emergencies.</p>
+      <span class="svc-tag">On-site Testing</span>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🛠️</div>
+      <h3>Maintenance</h3>
+      <p>Oil changes, fluid flushes, filter replacements, and full service packages to keep your car reliable year-round.</p>
+      <span class="svc-tag">Service Packages</span>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon">🚨</div>
+      <h3>Emergency</h3>
+      <p>Breakdowns don't wait for office hours. Call us anytime for urgent repairs and roadside assistance in JB area.</p>
+      <span class="svc-tag">Call Anytime</span>
+    </div>
+  </div>
+</section>
+
+<div class="stripe-divider"></div>
+
+<!-- AIR COND -->
+<section id="aircond">
+  <div>
+    <div class="label">Specialty Service</div>
+    <h2 class="section-title">Car Air Cond<br><span>Experts</span></h2>
+    <p style="color:var(--muted); font-size:.93rem; max-width:420px; margin-bottom:2rem; line-height:1.7;">Johor's heat is no joke. A working air conditioner isn't a luxury — it's essential. We diagnose, service, and repair car aircon systems quickly and affordably.</p>
+    <a href="https://wa.me/60127906884?text=Hi%2C%20I%20need%20aircon%20service" class="btn-primary" target="_blank" rel="noopener">Book Aircon Service</a>
+  </div>
+  <div class="aircond-visual">
+    <div class="aircond-temp">18°</div>
+    <ul class="aircond-checklist">
+      <li><div class="check-dot">✓</div> Gas top-up & refrigerant refill</li>
+      <li><div class="check-dot">✓</div> Compressor & belt inspection</li>
+      <li><div class="check-dot">✓</div> Evaporator & condenser cleaning</li>
+      <li><div class="check-dot">✓</div> Cabin filter replacement</li>
+      <li><div class="check-dot">✓</div> Aircon system pressure test</li>
+      <li><div class="check-dot">✓</div> Smell & leak diagnosis</li>
+    </ul>
+  </div>
+</section>
+
+<div class="stripe-divider"></div>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="label">What Customers Say</div>
+  <h2 class="section-title">4.9 Stars on <span>Google</span></h2>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Brought my Myvi in for aircon service — done in under an hour, ice cold now. Fair price and no nonsense. Will definitely come back."</p>
+      <div class="review-author">
+        <div class="author-avatar">H</div>
+        <div>
+          <div class="author-name">Hafizudin R.</div>
+          <div class="author-sub">Johor Bahru · via Google</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Very honest mechanic. Told me what needed to be fixed and what didn't. Fixed my brake pads quickly at a good price."</p>
+      <div class="review-author">
+        <div class="author-avatar">S</div>
+        <div>
+          <div class="author-name">Siti Norzahra</div>
+          <div class="author-sub">Johor Bahru · via Google</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"My car battery died on a Friday night and they helped me out fast. Really appreciate the emergency support. Highly recommended."</p>
+      <div class="review-author">
+        <div class="author-avatar">J</div>
+        <div>
+          <div class="author-name">Jason Lim</div>
+          <div class="author-sub">Johor Bahru · via Google</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Diagnosed my engine light issue in 20 minutes. Professional and quick. Other workshops quoted triple the price for the same job."</p>
+      <div class="review-author">
+        <div class="author-avatar">A</div>
+        <div>
+          <div class="author-name">Ahmad Kamil</div>
+          <div class="author-sub">Johor Bahru · via Google</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Service was fast, staff were friendly, and the aircon is blowing strong again. Love that they explain everything clearly before charging."</p>
+      <div class="review-author">
+        <div class="author-avatar">N</div>
+        <div>
+          <div class="author-name">Nurul Asyiqin</div>
+          <div class="author-sub">Johor Bahru · via Google</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★☆</div>
+      <p class="review-text">"Good work on my tyres — balanced and aligned properly. Had to wait a bit but overall great service. Will be back for my next service."</p>
+      <div class="review-author">
+        <div class="author-avatar">R</div>
+        <div>
+          <div class="author-name">Razif M.</div>
+          <div class="author-sub">Johor Bahru · via Google</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe-divider"></div>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="info-block">
+    <div class="label">Find Us</div>
+    <h2 class="section-title" style="margin-bottom:1.5rem">Visit Our <span>Workshop</span></h2>
+
+    <div class="info-row">
+      <div class="info-icon">📍</div>
+      <div>
+        <div class="info-label">Address</div>
+        <div class="info-val">7, Jalan Dato Jaafar 1,<br>Taman Dato Onn, 80350 Johor Bahru,<br>Johor Darul Ta'zim</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon">📞</div>
+      <div>
+        <div class="info-label">Phone</div>
+        <div class="info-val"><a href="tel:+60127906884">+60 12-790 6884</a></div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon">🕗</div>
+      <div>
+        <div class="info-label">Operating Hours</div>
+        <div class="info-val">Mon – Sat: 8:00 AM – 6:00 PM<br>Sunday: 9:00 AM – 2:00 PM<br><span style="color:var(--orange);font-size:.82rem">Emergency calls accepted anytime</span></div>
+      </div>
+    </div>
+    <div style="margin-top:.5rem">
+      <a href="https://maps.google.com/?cid=476778738925986837" class="btn-primary" target="_blank" rel="noopener" style="margin-top:.5rem">
+        Get Directions
+      </a>
+    </div>
+  </div>
+
+  <div class="map-box">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.617186657578!2d103.74530827499074!3d1.5261729984604494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da726e9e9cdd05%3A0x69bc0ef7e8a53715!2sCool%20Works%20Auto%20Service%20%26%20AirCond!5e0!3m2!1sen!2smy!4v1720000000000!5m2!1sen!2smy"
+      allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Cool Works Auto Service location">
+    </iframe>
+  </div>
+</section>
+
+<div class="stripe-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-aside">
+      <div class="label">Enquire Now</div>
+      <h3>Send Us a Message</h3>
+      <p>Fill in the form and we'll get back to you shortly. Or reach us instantly via WhatsApp for faster response.</p>
+      <a href="https://wa.me/60127906884" class="wa-button" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5a10.3 10.3 0 0 0-16.9 13.7l-1.3 4.8 4.8-1.3A10.3 10.3 0 0 0 20.5 3.5zm-8 17.8c-1.45 0-2.9-.4-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3a7.4 7.4 0 1 1 6.6 3.5z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+
+    <form class="enquiry" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="field">
+          <label for="fname">Full Name *</label>
+          <input type="text" id="fname" name="name" required placeholder="Your name" />
+        </div>
+        <div class="field">
+          <label for="fphone">Phone Number *</label>
+          <input type="tel" id="fphone" name="phone" required placeholder="+6012-345 6789" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="fservice">Service Required</label>
+        <select id="fservice" name="service">
+          <option value="">Select a service...</option>
+          <option>General Repair</option>
+          <option>Air Conditioning</option>
+          <option>Diagnostics</option>
+          <option>Tyres</option>
+          <option>Battery</option>
+          <option>Maintenance / Service</option>
+          <option>Emergency Assistance</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="fmsg">Message *</label>
+        <textarea id="fmsg" name="message" required placeholder="Describe your issue or question..."></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send Enquiry →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Cool<span>Works</span> Auto & AirCond</div>
+    <p style="margin-top:.3rem">7, Jln Dato Jaafar 1, Taman Dato Onn, 80350 Johor Bahru</p>
+  </div>
+  <p>© 2025 Cool Works Auto Service &amp; AirCond<br>
+  Website by <a href="#">Digital Dominium Enterprise</a></p>
+</footer>
+
+<!-- FLOATING WA -->
+<a href="https://wa.me/60127906884" class="float-wa" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20.5 3.5a10.3 10.3 0 0 0-16.9 13.7l-1.3 4.8 4.8-1.3A10.3 10.3 0 0 0 20.5 3.5zm-8 17.8c-1.45 0-2.9-.4-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3a7.4 7.4 0 1 1 6.6 3.5zm3-5.6c-.15-.08-.9-.45-1.05-.5-.14-.06-.25-.08-.36.08-.11.15-.43.5-.52.6-.1.1-.19.12-.35.04-.15-.07-.63-.23-1.19-.74-.44-.4-.74-.9-.83-1.05-.1-.15-.01-.23.08-.3.08-.08.16-.19.24-.29.08-.1.11-.17.17-.27.06-.1.03-.18-.01-.26-.04-.07-.36-.88-.5-1.2-.13-.3-.26-.25-.36-.25h-.3c-.1 0-.26.04-.4.2s-.52.5-.52 1.2.53 1.4.6 1.5c.08.1 1 1.55 2.4 2.25.34.15.6.24.8.31.33.12.63.1.87.06.26-.04.9-.36 1.02-.7.13-.35.13-.64.09-.7-.04-.06-.14-.1-.29-.17z"/>
+  </svg>
+</a>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const phone = form.phone.value;
+    const service = form.service.value || 'General enquiry';
+    const msg = form.message.value;
+    const waText = encodeURIComponent(`Hi Cool Works! My name is ${name}.\nService: ${service}\nPhone: ${phone}\nMessage: ${msg}`);
+    window.open(`https://wa.me/60127906884?text=${waText}`, '_blank');
+    form.reset();
+  }
+</script>
+</body>
+</html>
